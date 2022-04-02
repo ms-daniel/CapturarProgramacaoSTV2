@@ -78,16 +78,21 @@ public class main {
 				chaveDia = menu.getDay();
 				chavePro = menu.getKey();
 				
-				System.out.println(pesquisa.doSearch(chavePro, chaveDia, html));
+				if(chavePro.equals("Tudo"))
+					chavePro = " ";
+				
+				String textResul = pesquisa.doSearch(chavePro, chaveDia, html);
+				
+				if(textResul.equals(""))
+					menu.enableCopy(false);
+				else
+					menu.enableCopy(true);
+				
+				menu.setTextArea(textResul);
+				menu.setBlock(textResul);
 				pesquisa.FlashBlock();
 			}
 		});
-
-		//ler linha a linha
-		
-		//System.out.println(bloco);
-	
-	
 	}
 	//cria a tela principal
 	private JFrame StartWindows(JFrame Janela) {

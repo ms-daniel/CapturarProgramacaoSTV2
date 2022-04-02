@@ -3,9 +3,14 @@ package principal;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -18,7 +23,7 @@ import javax.swing.SwingConstants;
 
 public class Menu {
 	private JButton bBuscar;
-	//private JButton bLimpar;
+	private JButton bCopiar;
 	
 	private JLabel dia;
 	private JLabel filtro;
@@ -30,12 +35,14 @@ public class Menu {
 	private JTextArea listJogos;
 	
 	private Object[] items = {"Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"};
-	private Object[] itemsF = {"Vôlei", "Superliga", "Ça Va Paris", "NBA", "Tudo"};
+	private Object[] itemsF = {"Vôlei", "Superliga", "Ça V Paris", "NBA", "Tudo"};
 	
 	private Insets margem = new Insets(0,0,0,0);
 	
 	private JComboBox diasBox;
 	private JComboBox filtroBox;
+	
+	private String auxBloco;
 	
 	public Menu() {
 		//botão para buscar
@@ -46,6 +53,14 @@ public class Menu {
 		bBuscar.setFont(new Font("Arial", Font.BOLD, 12));
 		bBuscar.setFocusable(false);
 		bBuscar.setEnabled(true);
+		
+		bCopiar = new JButton("Copiar!");
+		bCopiar.setBounds(314, 310, 60, 25);
+		bCopiar.setMargin(margem);
+		bCopiar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		bCopiar.setFont(new Font("Arial", Font.BOLD, 12));
+		bCopiar.setFocusable(false);
+		bCopiar.setEnabled(false);
 		
 		//label para o dia selecionado
 		dia = new JLabel();
@@ -78,12 +93,17 @@ public class Menu {
 		spDescricao.setBounds(10, 60, 365, 250);
 		
 		//ações dos botões
-		
+		bCopiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				copy();
+			}
+		});
 		
 	}
 	
 	public JFrame getBoard(JFrame Jan) {
 		Jan.getContentPane().add(bBuscar);
+		Jan.getContentPane().add(bCopiar);
 		Jan.getContentPane().add(dia);
 		Jan.getContentPane().add(filtro);
 		Jan.getContentPane().add(diasBox);
@@ -103,6 +123,21 @@ public class Menu {
 	
 	public String getKey() {
 		return filtroBox.getSelectedItem().toString();
+	}
+	
+	//'seta' texto ao textarea
+	public void setTextArea(String texto) {
+		listJogos.setText(texto);
+	}
+
+	public void enableCopy(boolean num) {
+		bCopiar.setEnabled(num);
+	}
+	
+	
+	//associa texto retirado da página com a pesquisa
+	public void setBlock(String bloco) {
+		auxBloco = bloco;
 	}
 	
 	
@@ -143,6 +178,13 @@ public class Menu {
 			dia = 0;
 		}
 		return dia;
+	}
+	
+	private void copy(){
+		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		String text = auxBloco;
+		StringSelection selection = new StringSelection(text);
+		clipboard.setContents(selection, null);
 	}
 	
 }
