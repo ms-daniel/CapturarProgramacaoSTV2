@@ -65,6 +65,8 @@ public class main {
 		//açao do botao buscar
 		linkBo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				menu.setTextCopy();
+				
 				//não consegui fazer com reset
 				try {
 					inurl = url.openStream();

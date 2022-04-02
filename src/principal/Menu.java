@@ -27,6 +27,7 @@ public class Menu {
 	
 	private JLabel dia;
 	private JLabel filtro;
+	private JLabel visto;
 	
 	private Date data = new Date(); // pegar dia atual
 	
@@ -55,7 +56,7 @@ public class Menu {
 		bBuscar.setEnabled(true);
 		
 		bCopiar = new JButton("Copiar!");
-		bCopiar.setBounds(314, 310, 60, 25);
+		bCopiar.setBounds(304, 310, 70, 25);
 		bCopiar.setMargin(margem);
 		bCopiar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		bCopiar.setFont(new Font("Arial", Font.BOLD, 12));
@@ -74,6 +75,11 @@ public class Menu {
 		filtro.setBounds(120, 5, 120, 15);
 		filtro.setFont(new Font("Arial", Font.BOLD, 13));
 		
+		visto = new JLabel();
+		visto.setText("✔");
+		visto.setBounds(369, 323, 25, 25);
+		visto.setVisible(false);
+
 		//combobox para os dias
 		items = OrgDay();
 		diasBox = new JComboBox(items);
@@ -96,6 +102,9 @@ public class Menu {
 		bCopiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				copy();
+				visto.setVisible(true);
+				bCopiar.setText("Copiado!");
+				
 			}
 		});
 		
@@ -103,6 +112,7 @@ public class Menu {
 	
 	public JFrame getBoard(JFrame Jan) {
 		Jan.getContentPane().add(bBuscar);
+		Jan.getContentPane().add(visto);
 		Jan.getContentPane().add(bCopiar);
 		Jan.getContentPane().add(dia);
 		Jan.getContentPane().add(filtro);
@@ -138,6 +148,11 @@ public class Menu {
 	//associa texto retirado da página com a pesquisa
 	public void setBlock(String bloco) {
 		auxBloco = bloco;
+	}
+	
+	public void setTextCopy() {
+		bCopiar.setText("Copiar!");
+		visto.setVisible(false);
 	}
 	
 	
