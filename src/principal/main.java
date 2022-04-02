@@ -13,6 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -27,6 +28,7 @@ public class main {
 	private InputStreamReader rin;
 	private InputStream inurl;
 	private URL url;
+	private ImageIcon logo_icon = new ImageIcon(getClass().getClassLoader().getResource("STV2.png"));
 	
 	public static void main(String[] args){
 		EventQueue.invokeLater(new Runnable() {
@@ -101,7 +103,7 @@ public class main {
 		Janela.setBounds(0, 0, 400, 400);
 		Janela.setLocationRelativeTo(null); //alinha a janela no centro da tela
 		Janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		Janela.setIconImage(this.logo.getImage()); //define o icone da aplicação
+		Janela.setIconImage(this.logo_icon.getImage()); //define o icone da aplicação
 //		Janela.getContentPane().setBackground(Color.BLACK);
 		Janela.getContentPane().setLayout(null);
 		return Janela;
