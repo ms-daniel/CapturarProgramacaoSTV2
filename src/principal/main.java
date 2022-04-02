@@ -34,7 +34,7 @@ public class main {
 	}
 	
 	private void initialize() throws IOException {
-		Janela = new JFrame("Catch! Programações ST2"); //cria uma instancia para o objeto
+		Janela = new JFrame("Catch! Programacoes STV2"); //cria uma instancia para o objeto
 		Janela = StartWindows(Janela); //inicia janela
 		Janela = menu.getBoard(Janela); //põe componentes na tela
 		
@@ -140,7 +140,7 @@ public class main {
 	
 	}
 	private JFrame StartWindows(JFrame Janela) {
-		Janela.setBounds(0, 0, 400, 200);
+		Janela.setBounds(0, 0, 400, 400);
 		Janela.setLocationRelativeTo(null); //alinha a janela no centro da tela
 		Janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		Janela.setIconImage(this.logo.getImage()); //define o icone da aplicação
